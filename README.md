@@ -10,6 +10,9 @@ What are the purpose, structure and results ?
 
 
 IMPORTANT SOURCES / HELPS : 
+
 -https://github.com/patrickloeber/snake-ai-pytorch/blob/main/snake_game_human.py + https://www.youtube.com/watch?v=L8ypSXwyBds
+
 -https://www.youtube.com/watch?v=wc-FxNENg9U
+
 - CartPole code: https://github.com/openai/gym/blob/master/gym/envs/classic_control/cartpole.py#L130
