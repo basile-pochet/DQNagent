@@ -1,3 +1,4 @@
+!pip install gymnasium
 # Import necessary libraries
 import torch
 import torch.nn as nn
