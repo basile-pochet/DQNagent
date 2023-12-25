@@ -1,9 +1,10 @@
+!pip install gymnasium
 # Import necessary libraries
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
-import gym
+import gymnasium as gym
 from collections import deque
 import random
 
@@ -52,11 +53,8 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def replay(self, batch_size):
-        # Sample a random batch from replay memory and perform a Q-learning update
-        if len(self.memory) < batch_size:
-            return
-
-        minibatch = np.array(random.sample(self.memory, batch_size))
+        # Train on the whole memory ???
+        minibatch = np.array(self.memory)
         states = np.vstack(minibatch[:, 0])
         actions = np.array(minibatch[:, 1], dtype=np.int64)
         rewards = np.array(minibatch[:, 2], dtype=np.int64)
@@ -91,7 +89,7 @@ class DQNAgent:
         self.target_model.load_state_dict(self.model.state_dict())
 
 # Define the training function for the DQN agent
-def train_dqn(agent, env, episodes=1000, batch_size=32):
+def train_dqn(agent, env, episodes=1000, batch_size=1000):
     for episode in range(episodes):
         # Reset the environment and initialize variables for the current episode
         state = env.reset()
@@ -119,7 +117,7 @@ def train_dqn(agent, env, episodes=1000, batch_size=32):
 # Main execution block
 if __name__ == "__main__":
     # Create the CartPole environment
-    env = gym.make("CartPole-v1")
+    env = gym.make("CartPole-v1", render_mode='human')
     state_size = env.observation_space.shape[0]
     action_size = env.action_space.n
 
