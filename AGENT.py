@@ -1,10 +1,9 @@
-!pip install gymnasium
 # Import necessary libraries
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
-import gymnasium as gym
+import gym
 from collections import deque
 import random
 
@@ -53,7 +52,7 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def replay(self, batch_size):
-        # Train on the whole memory ???
+        # Train on the whole memory ?
         minibatch = np.array(self.memory)
         states = np.vstack(minibatch[:, 0])
         actions = np.array(minibatch[:, 1], dtype=np.int64)
@@ -75,13 +74,13 @@ class DQNAgent:
         next_Q_values = self.target_model(next_states).max(dim=1).values.detach()
         target_Q_values = rewards + (1 - dones) * self.gamma * next_Q_values
 
-        # Update the Q-network using the temporal difference error
+        # Update the Q-network using MSE
         self.optimizer.zero_grad()
         loss = self.loss_function(Q_values, target_Q_values.unsqueeze(1))
         loss.backward()
         self.optimizer.step()
 
-        # Update epsilon for epsilon-greedy exploration
+        # Update epsilon (the more the agent plays, the less we want him to take a random action)
         self.epsilon = max(self.epsilon_end, self.epsilon * self.epsilon_decay)
 
     def update_target_model(self):
@@ -89,7 +88,7 @@ class DQNAgent:
         self.target_model.load_state_dict(self.model.state_dict())
 
 # Define the training function for the DQN agent
-def train_dqn(agent, env, episodes=1000, batch_size=1000):
+def train_dqn(agent, env, episodes=1000, batch_size=32):
     for episode in range(episodes):
         # Reset the environment and initialize variables for the current episode
         state = env.reset()
@@ -117,7 +116,7 @@ def train_dqn(agent, env, episodes=1000, batch_size=1000):
 # Main execution block
 if __name__ == "__main__":
     # Create the CartPole environment
-    env = gym.make("CartPole-v1", render_mode='human')
+    env = gym.make("CartPole-v1")
     state_size = env.observation_space.shape[0]
     action_size = env.action_space.n
 
