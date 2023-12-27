@@ -2,6 +2,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torch.nn.functional as F
 import numpy as np
 import gym
 from collections import deque
@@ -12,11 +13,13 @@ class QNetwork(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
         super(QNetwork, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
-        self.fc2 = nn.Linear(hidden_size, output_size)
+        self.fc2 = nn.Linear(hidden_size, hidden_size)
+        self.fc3 = nn.Linear(hidden_size, output_size)
 
     def forward(self, x):
-        x = torch.relu(self.fc1(x))
-        return self.fc2(x)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        return self.fc3(x)
 
 # Define the Deep Q-Network (DQN) agent class
 class DQNAgent:
@@ -52,8 +55,13 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def replay(self, batch_size):
-        # Train on the whole memory ?
-        minibatch = np.array(self.memory)
+        # Train on the whole memory ? Can cause overfitting ? 
+        #minibatch = np.array(self.memory)
+        
+        if len(self.memory)<batch_size:
+          return
+        minibatch = np.array(random.sample(self.memory, batch_size))
+        
         states = np.vstack(minibatch[:, 0])
         actions = np.array(minibatch[:, 1], dtype=np.int64)
         rewards = np.array(minibatch[:, 2], dtype=np.int64)
@@ -88,7 +96,7 @@ class DQNAgent:
         self.target_model.load_state_dict(self.model.state_dict())
 
 # Define the training function for the DQN agent
-def train_dqn(agent, env, episodes=1000, batch_size=32):
+def train_dqn(agent, env, episodes=1000, batch_size=64):
     for episode in range(episodes):
         # Reset the environment and initialize variables for the current episode
         state = env.reset()
