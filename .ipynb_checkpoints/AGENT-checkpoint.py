@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 import numpy as np
-import gym
+import gymnasium as gym
 from collections import deque
 import random
 
@@ -27,7 +27,7 @@ class QNetwork(nn.Module):
 # Define the Deep Q-Network (DQN) agent class
 class DQNAgent:
 
-    def __init__(self, state_size, action_size, hidden_size=16, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01, epsilon_decay=0.995):
+    def __init__(self, state_size, action_size, hidden_size=258, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01, epsilon_decay=0.995):
         # Initialize agent parameters
         self.state_size = state_size
         self.action_size = action_size
@@ -59,13 +59,13 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def replay(self, batch_size):
-        # Train on the whole memory ? Can cause overfitting ?
+        # Train on the whole memory ? Can cause overfitting ? 
         #minibatch = np.array(self.memory)
-
+        
         if len(self.memory)<batch_size:
           return
         minibatch = np.array(random.sample(self.memory, batch_size))
-
+        
         states = np.vstack(minibatch[:, 0])
         actions = np.array(minibatch[:, 1], dtype=np.int64)
         rewards = np.array(minibatch[:, 2], dtype=np.int64)
@@ -100,7 +100,7 @@ class DQNAgent:
         self.target_model.load_state_dict(self.model.state_dict())
 
 # Define the training function for the DQN agent
-def train_dqn(agent, env, episodes=1000, batch_size=500):
+def train_dqn(agent, env, episodes=1000, batch_size=64):
     for episode in range(episodes):
         # Reset the environment and initialize variables for the current episode
         state = env.reset()
@@ -111,8 +111,8 @@ def train_dqn(agent, env, episodes=1000, batch_size=500):
         while not done:
             # Select an action, take a step, and store the experience in replay memory
             action = agent.select_action(state)
-            next_state, reward, done, _ = env.step(action) #because .step() returns: "return np.array(self.state, dtype=np.float32), reward, terminated, False, {}"
-            agent.remember(state, action, reward, next_state, done) 
+            next_state, reward, done, _ = env.step(action)
+            agent.remember(state, action, reward, next_state, done)
             state = next_state
             total_reward += reward
 
@@ -128,7 +128,7 @@ def train_dqn(agent, env, episodes=1000, batch_size=500):
 # Main execution block
 if __name__ == "__main__":
     # Create the CartPole environment
-    env = gym.make("CartPole-v1", render_mode = "human")
+    env = gym.make("CartPole-v1")
     state_size = env.observation_space.shape[0]
     action_size = env.action_space.n
 
