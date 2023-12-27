@@ -3,12 +3,14 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
-import gym
+import gymnasium as gym
 from collections import deque
 import random
 
+
 # Define the Q-network class using PyTorch
 class QNetwork(nn.Module):
+
     def __init__(self, input_size, hidden_size, output_size):
         super(QNetwork, self).__init__()
         self.fc1 = nn.Linear(input_size, hidden_size)
@@ -18,8 +20,10 @@ class QNetwork(nn.Module):
         x = torch.relu(self.fc1(x))
         return self.fc2(x)
 
+
 # Define the Deep Q-Network (DQN) agent class
 class DQNAgent:
+
     def __init__(self, state_size, action_size, hidden_size=258, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01, epsilon_decay=0.995):
         # Initialize agent parameters
         self.state_size = state_size
