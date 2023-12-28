@@ -14,11 +14,16 @@ Deep Q-Learning is a type of reinforcement learning where we use a deep neural n
 
 Q value is standing for quality of action, it represents the reward we obtain if we play this action while being at this state. 
 
-The basic main loop we have to understand for DQL is the following: 
+The basic main loop we have to understand for DQL is the following (after initializing the Q-value): 
 
-choose the action (from the state) - perform the action - measure the reward - update Q-value and train the model.
+- choose the action (from the state)
+- perform the action
+- measure the reward
+- update Q-value and train the model.
 
+The last step, training the model, needs a loss function. It is the reason why we use the **Bellman Equation**
 
+\[ Q(s, a) = (1 - \alpha) \cdot Q(s, a) + \alpha \cdot \left(r + \gamma \cdot \max_a Q(s', a)\right) \]
 
 Summarize the key concepts of Deep Q-Learning, including:
 
@@ -37,7 +42,7 @@ Detail the training process of a Deep Q-Learning model. Explain how the model le
 
 # Munchausen agent
 
-Basically, it's a DQN agent where the explaratory part is more important and rewarded. 
+Basically, it's a DQN agent where the exploratory part is more important and rewarded. 
 
 ## Resources
 
