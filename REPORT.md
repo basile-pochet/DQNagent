@@ -1,8 +1,10 @@
-# Deep Q-Learning Agent
+# Deep Q-Learning
 
 ## Introduction
 
-Provide a brief introduction to the report, outlining the main topics to be covered. Mention the significance of Deep Q-Learning and the optional inclusion of Munchausen Q-Learning.
+If we want to talk about Deep Q-Learning we need to introduce Reinforcement Learning, Deep Q-Learning being a type of RL.
+Reinforcement learning is a type of machine learning that trains algorithms to learn from their environments through trial and error. To do that, an agent is given information about its environment and do an action accordingly. It receives then a reward or a punishment so it can optimize its behaviors over time. The data is ccumulated through the agent's interactions with the environment. 
+Reinforcement learning is being used in various domains such as game playing, autonomous systems, robotics etc and is a powerful approach for training intelligent agents.
 
 ## Deep Q-Learning
 
@@ -35,19 +37,17 @@ Discuss any challenges or limitations associated with Deep Q-Learning. Address i
 
 ### Introduction
 
-Provide a brief introduction to Munchausen Q-Learning, explaining its purpose and how it extends Deep Q-Learning.
+INtroduction to Munchasen agent
 
 ### Key Concepts
 
-Summarize the key concepts of Munchausen Q-Learning, emphasizing any differences from traditional Deep Q-Learning.
+Key concepts of Munchausen Q-Learning
 
 ### Advantages and Considerations
 
-Discuss the potential advantages and considerations of using Munchausen Q-Learning compared to standard Deep Q-Learning.
+Advantages and considerations of using Munchausen Q-Learning compared to standard Deep Q-Learning.
 
 ## Resources
-
-Include a list of relevant resources that were used to research and understand Deep Q-Learning and Munchausen Q-Learning. This could include papers, articles, and video lectures.
 
 - [Playing Atari with Deep Reinforcement Learning (paper)](https://arxiv.org/abs/1312.5602)
 - [Deep Q-Learning Paper Explained (YouTube video)](https://www.youtube.com/watch?v=nOBm4aYEYR4&ab_channel=YannicKilcher)
@@ -58,16 +58,15 @@ Include a list of relevant resources that were used to research and understand D
 
 ## Conclusion
 
-Summarize the main points covered in the report. Conclude with any reflections on the importance and future directions of Deep Q-Learning and Munchausen Q-Learning.
+Conclusion
 
 ## Acknowledgments
 
-If you referenced specific sources or individuals, acknowledge them here.
 
 ---
 
 **Author:**
-<Basile Pochet>
+Basile Pochet
 
 **Class:**
 <Master 2 Data Science for Social Sciences>
