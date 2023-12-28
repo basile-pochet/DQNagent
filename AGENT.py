@@ -139,7 +139,7 @@ def train_dqn(agent, env, episodes=1000, batch_size=1000, env_name="Unknown"):
 # Main execution block
 if __name__ == "__main__":
     # Create the CartPole environment
-    env = gym.make('Acrobot-v1')
+    env = gym.make('CartPole-v1')
     state_size = env.observation_space.shape[0]
     action_size = env.action_space.n
 
@@ -147,4 +147,4 @@ if __name__ == "__main__":
     dqn_agent = DQNAgent(state_size, action_size,hidden_size=256*2)
 
     # Train the DQN agent on the CartPole environment
-    train_dqn(dqn_agent, env, env_name='Acrobot-v1')
+    train_dqn(dqn_agent, env, env_name='CartPole-v1')
