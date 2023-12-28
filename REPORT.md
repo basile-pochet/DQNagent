@@ -23,11 +23,10 @@ The basic main loop we have to understand for DQL is the following (after initia
 
 The last step, training the model, needs a loss function. It is the reason why we use the **Bellman Equation**:
 
-$$Q_{new}(s_t, a_t) = (1 - \alpha) \cdot Q(s_t, a_t) + \alpha \cdot \left(r_{t+1} + \gamma \cdot \max_a Q(s_{t+1}, a)\right)$$
+$$Q_{new}(s_t, a_t) = (1 - \alpha) \cdot Q_{current}(s_t, a_t) + \alpha \cdot \left(r_{t+1} + \gamma \cdot \max_a Q(s_{t+1}, a)\right)$$
 
 With 
 - $\alpha$ the learning rate, 0 makes the agent exploit only prior knowleadge and 1 makes the agent consider only the most recent information
-- $Q(s_t, a_t)$ the current value
 - *r_{t+1}* the reward received when moving from state *S_t* to *S_{t+1}*
 - $\gamma$ the discount factor, 0 makes the agent focus only on current rewards (immediate rewards) and 1 makes it focus only on long term rewards. 
 - $\max_a Q(s_{t+1}, a)$ the estimate of optimal future value
