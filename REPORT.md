@@ -23,9 +23,14 @@ The basic main loop we have to understand for DQL is the following (after initia
 
 The last step, training the model, needs a loss function. It is the reason why we use the **Bellman Equation**:
 
-$$Q_new(s_t, a_t) = (1 - \alpha) \cdot Q(s_t, a_t) + \alpha \cdot \left(r_{t+1} + \gamma \cdot \max_a Q(s_{t+1}, a)\right)$$
+$$Q_{new}(s_t, a_t) = (1 - \alpha) \cdot Q(s_t, a_t) + \alpha \cdot \left(r_{t+1} + \gamma \cdot \max_a Q(s_{t+1}, a)\right)$$
 
-
+With 
+- $\alpha$ the learning rate, 0 makes the agent exploit only prior knowleadge and 1 makes the agent consider only the most recent information
+- $Q(s_t, a_t)$ the current value
+- *r_{t+1}* the reward received when moving from state *S_t* to *S_{t+1}*
+- $\gamma$ the discount factor, 0 makes the agent focus only on current rewards (immediate rewards) and 1 makes it focus only on long term rewards. 
+- $\max_a Q(s_{t+1}, a)$ the estimate of optimal future value
 
 Summarize the key concepts of Deep Q-Learning, including:
 
@@ -53,7 +58,8 @@ Basically, it's a DQN agent where the exploratory part is more important and rew
 - [CartPole environment (Github)](https://github.com/openai/gym/blob/master/gym/envs/classic_control/cartpole.py)
 - [DQN agent to play SnakeGame(GitHub)](https://github.com/patrickloeber/snake-ai-pytorch/blob/main/snake_game_human.py )
 - [DQN agent to play SnakeGame (YouTube video)](https://www.youtube.com/watch?v=L8ypSXwyBds)
-- [Deep Q Learning is simple with PyTorch (YouTube video)](https://www.youtube.com/watch?v=wc-FxNENg9U) 
+- [Deep Q Learning is simple with PyTorch (YouTube video)](https://www.youtube.com/watch?v=wc-FxNENg9U)
+- [Wikipedia - Q-learning](https://en.wikipedia.org/wiki/Q-learning)
 
 ## Conclusion
 
