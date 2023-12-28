@@ -23,7 +23,7 @@ The basic main loop we have to understand for DQL is the following (after initia
 
 The last step, training the model, needs a loss function. It is the reason why we use the **Bellman Equation**
 
-$\[ Q(s, a) = (1 - \alpha) \cdot Q(s, a) + \alpha \cdot \left(r + \gamma \cdot \max_a Q(s', a)\right) \]$
+$Q(s, a) = (1 - \alpha) \cdot Q(s, a) + \alpha \cdot \left(r + \gamma \cdot \max_a Q(s', a)\right)$
 
 Summarize the key concepts of Deep Q-Learning, including:
 
