@@ -23,7 +23,7 @@ The basic main loop we have to understand for DQL is the following (after initia
 
 The last step, training the model, needs a loss function. It is the reason why we use the **Bellman Equation**:
 
-$$Q_new(s_t, a_t) = (1 - \alpha) \cdot Q(s_t, a_t) + \alpha \cdot \left(r_(t+1) + \gamma \cdot \max_a Q(s_(t+1), a)\right)$$
+$$Q_new(s_t, a_t) = (1 - \alpha) \cdot Q(s_t, a_t) + \alpha \cdot \left(r_{t+1} + \gamma \cdot \max_a Q(s_{t+1}, a)\right)$$
 
 
 
