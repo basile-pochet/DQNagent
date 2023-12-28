@@ -8,6 +8,7 @@ The aim is to explore and implement Deep Q-learning algorithms in reinforcement 
 
 What are the purpose, structure and results ?
 
+![CartPole](GIFs/cart_pole.gif)
 
 IMPORTANT SOURCES / HELPS : 
 
