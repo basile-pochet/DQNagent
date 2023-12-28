@@ -1,4 +1,4 @@
-# Deep Q-Learning and Munchausen Q-Learning Report
+# Deep Q-Learning Agent
 
 ## Introduction
 
@@ -49,8 +49,12 @@ Discuss the potential advantages and considerations of using Munchausen Q-Learni
 
 Include a list of relevant resources that were used to research and understand Deep Q-Learning and Munchausen Q-Learning. This could include papers, articles, and video lectures.
 
-- [Playing Atari with Deep Reinforcement Learning](https://arxiv.org/abs/1312.5602)
-- [Deep Q-Learning Paper Explained](https://www.youtube.com/watch?v=nOBm4aYEYR4&ab_channel=YannicKilcher)
+- [Playing Atari with Deep Reinforcement Learning (paper)](https://arxiv.org/abs/1312.5602)
+- [Deep Q-Learning Paper Explained (YouTube video)](https://www.youtube.com/watch?v=nOBm4aYEYR4&ab_channel=YannicKilcher)
+- [CartPole environment (Github)](https://github.com/openai/gym/blob/master/gym/envs/classic_control/cartpole.py)
+- [DQN agent to play SnakeGame(GitHub)](https://github.com/patrickloeber/snake-ai-pytorch/blob/main/snake_game_human.py )
+- [DQN agent to play SnakeGame (YouTube video)](https://www.youtube.com/watch?v=L8ypSXwyBds)
+- [Deep Q Learning is simple with PyTorch (YouTube video)](https://www.youtube.com/watch?v=wc-FxNENg9U) 
 
 ## Conclusion
 
