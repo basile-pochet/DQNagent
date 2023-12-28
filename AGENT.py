@@ -7,6 +7,7 @@ import numpy as np
 import gym
 from collections import deque
 import random
+import matplotlib.pyplot as plt
 
 
 # Define the Q-network class using PyTorch
@@ -27,11 +28,11 @@ class QNetwork(nn.Module):
 # Define the Deep Q-Network (DQN) agent class
 class DQNAgent:
 
-    def __init__(self, state_size, action_size, hidden_size=16, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01, epsilon_decay=0.995):
+    def __init__(self, state_size, action_size, hidden_size=128, gamma=0.99, epsilon_start=1.0, epsilon_end=0.01, epsilon_decay=0.995):
         # Initialize agent parameters
         self.state_size = state_size
         self.action_size = action_size
-        self.memory = deque(maxlen=10000)
+        self.memory = deque(maxlen=10000) #popleft() if maxlen is reached
         self.gamma = gamma
         self.epsilon = epsilon_start
         self.epsilon_end = epsilon_end
@@ -49,10 +50,10 @@ class DQNAgent:
     def select_action(self, state):
         # Epsilon-greedy action selection
         if np.random.rand() < self.epsilon:
-            return np.random.choice(self.action_size)
+            return np.random.choice(self.action_size) # in this case, agent is taking a random action
         state = torch.tensor(state, dtype=torch.float32).unsqueeze(0)
         q_values = self.model(state)
-        return torch.argmax(q_values).item()
+        return torch.argmax(q_values).item() # otherwise, it takes the action maximising the Q value
 
     def remember(self, state, action, reward, next_state, done):
         # Store experience tuple (state, action, reward, next_state, done) in replay memory
@@ -100,7 +101,8 @@ class DQNAgent:
         self.target_model.load_state_dict(self.model.state_dict())
 
 # Define the training function for the DQN agent
-def train_dqn(agent, env, episodes=1000, batch_size=500):
+def train_dqn(agent, env, episodes=1000, batch_size=1000, env_name="Unknown"):
+    all_rewards = []
     for episode in range(episodes):
         # Reset the environment and initialize variables for the current episode
         state = env.reset()
@@ -120,20 +122,29 @@ def train_dqn(agent, env, episodes=1000, batch_size=500):
         agent.replay(batch_size)
         # Update the target model to track the changes in the Q-network
         agent.update_target_model()
+        all_rewards.append(total_reward)
 
-        # Print episode information every 10 episodes
-        if episode % 10 == 0:
-            print(f"Episode: {episode}, Total Reward: {total_reward}")
+    max_reward = max(all_rewards)
+    mean_rewards = [sum(all_rewards[:i + 1]) / (i + 1) for i in range(len(all_rewards))]
+    # Plot the total rewards over episodes
+    plt.plot(all_rewards, label='Total Rewards')
+    plt.plot(mean_rewards, label='Mean Total Reward')
+    plt.xlabel('Episode (times 10)')
+    plt.ylabel('Total Reward')
+    plt.title(f'Total and Mean Rewards over Episodes\n{env_name}\nSize of hidden layer: {agent.model.fc1.out_features}, Batch Size: {batch_size}')
+    plt.text(len(all_rewards), max_reward, f'Max Reward: {max_reward}', verticalalignment='bottom')
+    plt.legend()
+    plt.show()
 
 # Main execution block
 if __name__ == "__main__":
     # Create the CartPole environment
-    env = gym.make("CartPole-v1", render_mode = "human")
+    env = gym.make('Acrobot-v1')
     state_size = env.observation_space.shape[0]
     action_size = env.action_space.n
 
     # Initialize the DQN agent
-    dqn_agent = DQNAgent(state_size, action_size)
+    dqn_agent = DQNAgent(state_size, action_size,hidden_size=256*2)
 
     # Train the DQN agent on the CartPole environment
-    train_dqn(dqn_agent, env)
+    train_dqn(dqn_agent, env, env_name='Acrobot-v1')
