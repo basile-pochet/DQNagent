@@ -56,11 +56,31 @@ In our case, we use the $\epsilon$ as a decreasing value. The more the agent is 
 
 ### Architecture
 
-Describe the architecture of a typical Deep Q-Learning network.
+The Neural Network used can be a simple Linear Neural Network, which takes as inputs the state and outputs the Q-Value for each action.
+
+The Q network and the Target network have the same architecture but different weights. The Q network is updated frequently during training, while the Target network is updated less often to provide more stable target values.
+The use of two neural networks, along with Experience Replay, is a key architectural choice in DQL that contributes to its stability and effectiveness in learning from the environment
 
 ### Training Process
 
-Detail the training process of a Deep Q-Learning model. 
+Now the most important part, how do we train a DQN Agent ? There are a few steps.
+
+#### Initialization
+
+We first initialize the Q network and the target network (which is a copy of the first one) with random weights. In addition, we fix the size of the replay memory. 
+
+#### Sampling
+
+The agent performs an action and stores the observed result in the memory. Most of the time the result consists of: (state, action, reward, next state, done).
+
+#### Training
+
+This is the most important part.
+
+The agent select a random batch from the memory and uses it to update the Q-network using a gradient descent update step.
+
+It then uses the Mean Squared Error to compare the Q-value predicion and target so it can update the Q-network's weights.  
+
 
 # Munchausen agent
 
