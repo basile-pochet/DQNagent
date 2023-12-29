@@ -3,7 +3,7 @@
 ## Introduction
 
 If we want to talk about Deep Q-Learning we need to introduce Reinforcement Learning, Deep Q-Learning being a type of RL.
-Reinforcement learning is a type of machine learning that trains algorithms to learn from their environments through trial and error. To do that, an agent is given information about its environment and do an action accordingly. It receives then a reward or a punishment so it can optimize its behaviors over time. The data is ccumulated through the agent's interactions with the environment. In other words, "reinforcement learning is teaching a software agent how to behave in an environment by telling it how good it's doing" ([Patrick Loeber](https://www.youtube.com/watch?v=L8ypSXwyBds).
+Reinforcement learning is a type of machine learning that trains algorithms to learn from their environments through trial and error. To do that, an agent is given information about its environment and do an action accordingly. It receives then a reward or a punishment so it can optimize its behaviors over time. The data is ccumulated through the agent's interactions with the environment. In other words, "reinforcement learning is teaching a software agent how to behave in an environment by telling it how good it's doing" ([Patrick Loeber](https://www.youtube.com/watch?v=L8ypSXwyBds)).
 Reinforcement learning is being used in various domains such as game playing, autonomous systems, robotics etc and is a powerful approach for training intelligent agents.
 
 ## Deep Q-Learning
@@ -31,7 +31,7 @@ With
 - $\gamma$ the discount factor, 0 makes the agent focus only on current rewards (immediate rewards) and 1 makes it focus only on long term rewards. 
 - $\max_a Q(s_{t+1}, a)$ the estimate of optimal future value
 
-Summarize the key concepts of Deep Q-Learning, including:
+Summarize the key concepts of Deep Q-Learning, including: just describe what it is. We talk about it later and show how the interect betwee each other.
 
 - Q-Learning
 - Experience Replay
@@ -40,11 +40,11 @@ Summarize the key concepts of Deep Q-Learning, including:
 
 ### Architecture
 
-Describe the architecture of a typical Deep Q-Learning network. Discuss the role of neural networks, input and output representations, and the learning process.
+Describe the architecture of a typical Deep Q-Learning network.
 
 ### Training Process
 
-Detail the training process of a Deep Q-Learning model. Explain how the model learns from experiences, updates its parameters, and improves its performance over time.
+Detail the training process of a Deep Q-Learning model. 
 
 # Munchausen agent
 
