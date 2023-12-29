@@ -75,9 +75,7 @@ The agent performs an action and stores the observed result in the memory. Most 
 
 #### Training
 
-This is the most important part.
-
-The agent select a random batch from the memory and uses it to update the Q-network using a gradient descent update step.
+This is the most important part, the agent select a random batch from the memory and uses it to update the Q-network using a gradient descent update step.
 
 It then uses the Mean Squared Error to compare the Q-value predicion and target so it can update the Q-network's weights.  
 
