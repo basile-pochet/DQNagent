@@ -38,6 +38,9 @@ Summarize the key concepts of Deep Q-Learning, including: just describe what it 
 - Target Networks
 - Exploration vs. Exploitation (Epsilon-Greedy)
 
+
+Q-Learning is an off-policy algorithm that learns about the greedy policy $(a = \max_{a} Q(s, a; \theta))$ while using a different behavior policy for acting in the environment/collecting data. The basic idea behind Q-Learning is to use the Bellman optimality equation as an iterative update $(Q_{i}(s, a) \leftarrow \mathbb{E}\left[ r + \gamma \max_{a'} Q_{i}(s', a')\right])$, and it can be shown that this converges to the optimal (Q)-function, i.e. $(Q_i \rightarrow Q^*)$ as $(i \rightarrow \infty)$. For most problems, it is impractical to represent the (Q)-function as a table containing values for each combination. Instead, a function approximator, such as a neural network with parameters $(\theta)$, is trained to estimate the Q-values, i.e. $(Q(s, a; \theta))$ 
+
 ### Architecture
 
 Describe the architecture of a typical Deep Q-Learning network.
