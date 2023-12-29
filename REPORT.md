@@ -12,6 +12,8 @@ Deep Q-Learning is a type of reinforcement learning where we use a deep neural n
 
 ### Key Concepts
 
+#### Q-Value
+
 Q value is standing for quality of action, it represents the reward we obtain if we play this action while being at this state. 
 
 The basic main loop we have to understand for DQL is the following (after initializing the Q-value): 
@@ -31,15 +33,26 @@ With
 - $\gamma$ the discount factor, 0 makes the agent focus only on current rewards (immediate rewards) and 1 makes it focus only on long term rewards. 
 - $\max_a Q(s_{t+1}, a)$ the estimate of optimal future value
 
-Summarize the key concepts of Deep Q-Learning, including: just describe what it is. We talk about it later and show how the interect betwee each other.
+#### Q-Learning
 
-- Q-Learning
-- Experience Replay
-- Target Networks
-- Exploration vs. Exploitation (Epsilon-Greedy)
+Q-Learning is an off-policy algorithm that learns about the greedy policy $a = \max_{a} Q(s, a; \theta)$ while using a different behavior policy for acting in the environment/collecting data. The basic idea behind Q-Learning is to use the Bellman optimality equation as an iterative update $Q_{i}(s, a) \leftarrow \mathbb{E}\left[ r + \gamma \max_{a'} Q_{i}(s', a')\right]$, and it can be shown that this converges to the optimal (Q)-function, i.e. $Q_i \rightarrow Q^*$ as $i \rightarrow \infty$. For most problems, it is impractical to represent the (Q)-function as a table containing values for each combination. Instead, a function approximator, such as a neural network with parameters $\theta$, is trained to estimate the Q-values, i.e. $Q(s, a; \theta)$ 
 
 
-Q-Learning is an off-policy algorithm that learns about the greedy policy $(a = \max_{a} Q(s, a; \theta))$ while using a different behavior policy for acting in the environment/collecting data. The basic idea behind Q-Learning is to use the Bellman optimality equation as an iterative update $(Q_{i}(s, a) \leftarrow \mathbb{E}\left[ r + \gamma \max_{a'} Q_{i}(s', a')\right])$, and it can be shown that this converges to the optimal (Q)-function, i.e. $(Q_i \rightarrow Q^*)$ as $(i \rightarrow \infty)$. For most problems, it is impractical to represent the (Q)-function as a table containing values for each combination. Instead, a function approximator, such as a neural network with parameters $(\theta)$, is trained to estimate the Q-values, i.e. $(Q(s, a; \theta))$ 
+#### Experience replay
+
+Experience Replay is a technique used to make the network updates more stable. It involves storing the transitions that the agent observes, allowing the data to be reused later. By sampling from it randomly, the transitions that build up a batch are decorrelated, which greatly stabilizes and improves the DQN training procedure
+
+
+#### Target Networks
+
+To stabilize the training of the Q network, a separate neural network called the Target network is used. It is a copy of the Q network that is updated less frequently to provide more stable target values during the training process. The parameters from the previous iteration are fixed and not updated. In practice, a snapshot of the network parameters from a few iterations ago is used instead of the current parameters. This copy is called the target network.
+
+
+#### Exploration vs. Exploitation (Epsilon-Greedy)
+
+The exploration-exploitation tradeoff is a very important concept in reinforcement learning. A good strategy can improve learning speed and the final total reward. The agent uses an $\epsilon$-greedy policy that selects the greedy action with probability $1 - \epsilon$ and selects a random action with probability $\epsilon$, where $\epsilon$ is the exploration rate. This allows the agent to balance between exploring new actions and exploiting the current best-known actions
+
+In our case, we use the $\epsilon$ as a decreasing value. The more the agent is going to play, the smaller the $\epsilon$ is going to be. The agent decides to play a random action if the command np.random.rand() is smaller than $\epsilon$.
 
 ### Architecture
 
