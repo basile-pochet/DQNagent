@@ -88,6 +88,7 @@ The Munchausen Reinforcement Learning (M-DQN) is a modification of the Deep Q-Le
 
 $$L(\theta) = \mathbb{E}_{s, a \sim D} \left[ (r(s, a) + \alpha \cdot \text{sign}(\rho) \cdot \log \pi(a|s, \theta)) \cdot Q(s, a, \theta) \right]$$
 
+Without entering into too much details, this term encourages actions with higher uncertainty, it encourages exploration. And this is the whole purpose of the Munchausen Agent, encourage and reward exploration instead of only working with exploitation. 
 
 The M-DQN modification is achieved by adding a scaled log-policy to the DQN's target. This addition introduces a novel term to the DQN's target, similar to maximum-entropy reinforcement learning, and is designed to improve the agent's learning efficiency and overall performance. The M-DQN agent's theoretical aspects include implicit KL regularization, which performs KL regularization without error in the greedy step, and an increase in the action gap, which generalizes advantage learning. These theoretical aspects contribute to the M-DQN agent's superior performance compared to traditional DQN and other state-of-the-art agents.
 
