@@ -16,6 +16,7 @@ The structure of the repository is the following:
 
   - [GIFs](GIFs) and [Plots](Plots) where I stored the GIFs and Plots (makes sense)
   - [Agent](AGENT.py) is the most important file. In it you will be able to see how I created the DQN agent, along with the docstrings in google format for each function and with comments for each ambiguous or complex code section.
+  - [Report](REPORT.md) is the final report to be handed out for evaluation. You can find the theoretical parts about Deep Q-Learning and also about Munchausen DQL.
 
 ## Results
 
@@ -53,13 +54,15 @@ The final results for the three games are:
 
 ![MountainCar](Plots/11-%20mountain%20car.png)
 
+## Improvements
+
+As I have to hand out this repository before the deadling I am not going to work more on it before the final evaluation. However, I wish to work more on it.
+
+The next steps are the following: create GIFs of the agent playing games, train it on more games (more complicated) which implies to improve it.
+
+I also would like to implement the Munchausen Agent, so I can compare the two agent. Even if I suspect, after reading the litterature that the M-DQN is much better than the simple DQN. We never know what could happen (in this case, yes we do).
 
 
+## Sources
 
-IMPORTANT SOURCES / HELPS : 
-
-- https://github.com/patrickloeber/snake-ai-pytorch/blob/main/snake_game_human.py + https://www.youtube.com/watch?v=L8ypSXwyBds
-
-- https://www.youtube.com/watch?v=wc-FxNENg9U
-
-- CartPole code: https://github.com/openai/gym/blob/master/gym/envs/classic_control/cartpole.py#L130
+You can find all the sources I used at the end of the [Report](REPORT.md) file. 
