@@ -82,7 +82,14 @@ It then uses the Mean Squared Error to compare the Q-value predicion and target 
 
 # Munchausen agent
 
-Basically, it's a DQN agent where the exploratory part is more important and rewarded. 
+The Munchausen Reinforcement Learning (M-DQN) is a modification of the Deep Q-Learning (DQN) algorithm that incorporates a term inspired by the Munchausen game. This modification is a simple yet powerful extension of existing agents, and it is theoretically grounded, performing implicit KL regularization and enjoying a very strong performance bound. The M-DQN agent has been shown to outperform the traditional DQN agent in various settings, including Atari games, and it has been compared to other state-of-the-art agents such as C51 and Rainbow, demonstrating superior performance. The M-DQN agent achieves this by increasing the action gap and leveraging the Munchausen term, which leads to significant improvements in learning efficiency and overall performance. The M-DQN agent is theoretically sound and does not rely on common deep reinforcement learning tricks, making it a promising advancement in the field of reinforcement learning.
+
+The M-DQN modification is achieved by adding a scaled log-policy to the DQN's target. This addition introduces a novel term to the DQN's target, similar to maximum-entropy reinforcement learning, and is designed to improve the agent's learning efficiency and overall performance. The M-DQN agent's theoretical aspects include implicit KL regularization, which performs KL regularization without error in the greedy step, and an increase in the action gap, which generalizes advantage learning. These theoretical aspects contribute to the M-DQN agent's superior performance compared to traditional DQN and other state-of-the-art agents.
+
+#### KL regularization
+
+KL regularization, short for Kullback-Leibler regularization, is a technique used in reinforcement learning to penalize a new policy from being too far from the previous one, as measured by the KL divergence. It is a form of regularization that encourages the new policy to stay close to the previous policy, thus preventing drastic changes in the policy distribution. This can be particularly useful in reinforcement learning to ensure stability and prevent large policy changes that may lead to suboptimal behavior. KL regularization has been shown to be helpful in improving the performance and stability of reinforcement learning algorithms, and it is often used in combination with other techniques to achieve better training results.
+
 
 ## Resources
 
@@ -93,13 +100,9 @@ Basically, it's a DQN agent where the exploratory part is more important and rew
 - [DQN agent to play SnakeGame (YouTube video)](https://www.youtube.com/watch?v=L8ypSXwyBds)
 - [Deep Q Learning is simple with PyTorch (YouTube video)](https://www.youtube.com/watch?v=wc-FxNENg9U)
 - [Wikipedia - Q-learning](https://en.wikipedia.org/wiki/Q-learning)
-
-## Conclusion
-
-Conclusion
-
-## Acknowledgments
-
+- [Munchausen RL](https://arxiv.org/abs/2007.14430)
+- [Munchausen RL](https://simons.berkeley.edu/sites/default/files/docs/16336/matthieugeistrl20-1slides.pdf)
+- [Munchausen RL](https://vitalab.github.io/article/2020/09/10/Munchausen_Reinforcement_Learning.html)
 
 ---
 
