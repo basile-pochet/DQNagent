@@ -116,4 +116,4 @@ KL regularization, short for Kullback-Leibler regularization, is a technique use
 Basile Pochet
 
 **Class:**
-<Master 2 Data Science for Social Sciences>
+Master 2 Data Science for Social Sciences
