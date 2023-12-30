@@ -2,7 +2,7 @@
 
 Hello hello.
 
-If you are reading this you might be a professor or someone interested in Deep Q-Learning. Hence, welcome !
+If you are reading this you might be a professor or someone interested in Deep Q-Learning. Welcome !
 
 This project has been done in the context of the course Mathematics of machine and deep learning algorithm at the Toulouse School of Economics for the second year of the master Data Science for Social Sciences.
 
@@ -58,11 +58,11 @@ The final results for the three games are:
 
 As I have to hand out this repository before the deadling I am not going to work more on it before the final evaluation. However, I wish to work more on it.
 
-The next steps are the following: create GIFs of the agent playing games, train it on more games (more complicated) which implies to improve it.
+The next steps are the following: create GIFs of the agent playing games, train it on more games (more complicated) which implies to improve it. So far, I tried to use the .render() command allong with the render_mode= human but it did not work so I decided to not include it in the final code as it is always better to have a code working in its entirety.
 
-I also would like to implement the Munchausen Agent, so I can compare the two agent. Even if I suspect, after reading the litterature that the M-DQN is much better than the simple DQN. We never know what could happen (in this case, yes we do).
+I also would like to implement the Munchausen Agent, so I can compare the two agent. Even if I suspect, after reading the litterature, that the M-DQN is much better than the simple DQN. We never know what could happen (in this case, yes we do).
 
 
 ## Sources
 
-You can find all the sources I used at the end of the [Report](REPORT.md) file. 
+You can find all the sources I used at the end of the [Report](REPORT.md) file, at the end.
