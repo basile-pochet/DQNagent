@@ -65,15 +65,15 @@ The use of two neural networks, along with Experience Replay, is a key architect
 
 Now the most important part, how do we train a DQN Agent ? There are a few steps.
 
-#### Initialization
+  - Initialization
 
 We first initialize the Q network and the target network (which is a copy of the first one) with random weights. In addition, we fix the size of the replay memory. 
 
-#### Sampling
+  - Sampling
 
 The agent performs an action and stores the observed result in the memory. Most of the time the result consists of: (state, action, reward, next state, done).
 
-#### Training
+  - Training
 
 This is the most important part, the agent select a random batch from the memory and uses it to update the Q-network using a gradient descent update step.
 
