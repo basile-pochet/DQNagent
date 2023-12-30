@@ -8,7 +8,16 @@ This project has been done in the context of the course Mathematics of machine a
 
 The aim is to explore and implement Deep Q-learning algorithms in reinforcement learning, specifically focusing on MinAtar games. The project will encompass the development of a Deep Q-Learning agent from scratch, training and testing it in different environments (we will try it first in the environment of a CartPole game).
 
-What are the purpose, structure and results ?
+Unfortunately I did not have time to implement a Munchausen Agent to compare its performance to my DQN agent. But the M-DQN Agent is known to be a better one. I might try after the deadline to implement it. 
+
+## Structure
+
+The structure of the repository is the following: 
+
+## Results
+
+
+The CartPole game is the game bellow. 
 
 ![CartPole](GIFs/cart_pole.gif)
 
