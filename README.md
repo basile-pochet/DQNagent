@@ -28,11 +28,22 @@ I tried my DQN Agent in the following games: CartPole, Acrobot and Moutain Car.
 
 The best results I obtain were on the CartPole game. It might be because when I implemented the agent I was thinking too much about the game I wanted it to perform on. 
 
-The following plot show the main results but you can find more results in the [Plots](Plots) folder where they are named chronologically (first is [1-First try of the dqn agent](Plots/1-First try of the dqn agent.png) and last one is [11-mountain car](Plots/11- mountain car.png)).
+The following plot show the main results but you can find more results in the [Plots](Plots) folder where they are named chronologically (first is [1-First try of the dqn agent](Plots/1-First%20try%20of%20the%20dqn%20agent.png) and last one is [11-mountain car](Plots/11-%20mountain%20car.png)).
 
 The final results for the three games are: 
 
-![Cartpole](Plots/8- final CartPole.png)
+#### CartPole
+
+![Cartpole](Plots/8-%20final%20CartPole.png)
+
+#### Acrobot
+
+![Acrobot](Plots/9-%20Acrobot%20V1.png)
+
+#### MountainCar
+
+![MountainCar](Plots/11-%20mountain%20car.png)
+
 
 
 
