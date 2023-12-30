@@ -3,7 +3,7 @@
 ## Introduction
 
 If we want to talk about Deep Q-Learning we need to introduce Reinforcement Learning, Deep Q-Learning being a type of RL.
-Reinforcement learning is a type of machine learning that trains algorithms to learn from their environments through trial and error. To do that, an agent is given information about its environment and do an action accordingly. It receives then a reward or a punishment so it can optimize its behaviors over time. The data is ccumulated through the agent's interactions with the environment. In other words, "reinforcement learning is teaching a software agent how to behave in an environment by telling it how good it's doing" ([Patrick Loeber](https://www.youtube.com/watch?v=L8ypSXwyBds).
+Reinforcement learning is a type of machine learning that trains algorithms to learn from their environments through trial and error. To do that, an agent is given information about its environment and do an action accordingly. It receives then a reward or a punishment so it can optimize its behaviors over time. The data is ccumulated through the agent's interactions with the environment. In other words, "reinforcement learning is teaching a software agent how to behave in an environment by telling it how good it's doing" ([Patrick Loeber](https://www.youtube.com/watch?v=L8ypSXwyBds)).
 Reinforcement learning is being used in various domains such as game playing, autonomous systems, robotics etc and is a powerful approach for training intelligent agents.
 
 ## Deep Q-Learning
@@ -11,6 +11,8 @@ Reinforcement learning is being used in various domains such as game playing, au
 Deep Q-Learning is a type of reinforcement learning where we use a deep neural network to predict the actions. 
 
 ### Key Concepts
+
+#### Q-Value
 
 Q value is standing for quality of action, it represents the reward we obtain if we play this action while being at this state. 
 
@@ -31,24 +33,69 @@ With
 - $\gamma$ the discount factor, 0 makes the agent focus only on current rewards (immediate rewards) and 1 makes it focus only on long term rewards. 
 - $\max_a Q(s_{t+1}, a)$ the estimate of optimal future value
 
-Summarize the key concepts of Deep Q-Learning, including:
+#### Q-Learning
 
-- Q-Learning
-- Experience Replay
-- Target Networks
-- Exploration vs. Exploitation (Epsilon-Greedy)
+Q-Learning is an off-policy algorithm that learns about the greedy policy $a = \max_{a} Q(s, a; \theta)$ while using a different behavior policy for acting in the environment/collecting data. The basic idea behind Q-Learning is to use the Bellman optimality equation as an iterative update $Q_{i}(s, a) \leftarrow \mathbb{E}\left[ r + \gamma \max_{a'} Q_{i}(s', a')\right]$, and it can be shown that this converges to the optimal (Q)-function, i.e. $Q_i \rightarrow Q^*$ as $i \rightarrow \infty$. For most problems, it is impractical to represent the (Q)-function as a table containing values for each combination. Instead, a function approximator, such as a neural network with parameters $\theta$, is trained to estimate the Q-values, i.e. $Q(s, a; \theta)$ 
+
+
+#### Experience replay
+
+Experience Replay is a technique used to make the network updates more stable. It involves storing the transitions that the agent observes, allowing the data to be reused later. By sampling from it randomly, the transitions that build up a batch are decorrelated, which greatly stabilizes and improves the DQN training procedure
+
+
+#### Target Networks
+
+To stabilize the training of the Q network, a separate neural network called the Target network is used. It is a copy of the Q network that is updated less frequently to provide more stable target values during the training process. The parameters from the previous iteration are fixed and not updated. In practice, a snapshot of the network parameters from a few iterations ago is used instead of the current parameters. This copy is called the target network.
+
+
+#### Exploration vs. Exploitation (Epsilon-Greedy)
+
+The exploration-exploitation tradeoff is a very important concept in reinforcement learning. A good strategy can improve learning speed and the final total reward. The agent uses an $\epsilon$-greedy policy that selects the greedy action with probability $1 - \epsilon$ and selects a random action with probability $\epsilon$, where $\epsilon$ is the exploration rate. This allows the agent to balance between exploring new actions and exploiting the current best-known actions
+
+In our case, we use the $\epsilon$ as a decreasing value. The more the agent is going to play, the smaller the $\epsilon$ is going to be. The agent decides to play a random action if the command np.random.rand() is smaller than $\epsilon$.
 
 ### Architecture
 
-Describe the architecture of a typical Deep Q-Learning network. Discuss the role of neural networks, input and output representations, and the learning process.
+The Neural Network used can be a simple Linear Neural Network, which takes as inputs the state and outputs the Q-Value for each action.
+
+The Q network and the Target network have the same architecture but different weights. The Q network is updated frequently during training, while the Target network is updated less often to provide more stable target values.
+The use of two neural networks, along with Experience Replay, is a key architectural choice in DQL that contributes to its stability and effectiveness in learning from the environment
 
 ### Training Process
 
-Detail the training process of a Deep Q-Learning model. Explain how the model learns from experiences, updates its parameters, and improves its performance over time.
+Now the most important part, how do we train a DQN Agent ? There are a few steps.
+
+  - Initialization
+
+We first initialize the Q network and the target network (which is a copy of the first one) with random weights. In addition, we fix the size of the replay memory. 
+
+  - Sampling
+
+The agent performs an action and stores the observed result in the memory. Most of the time the result consists of: (state, action, reward, next state, done).
+
+  - Training
+
+This is the most important part, the agent select a random batch from the memory and uses it to update the Q-network using a gradient descent update step.
+
+It then uses the Mean Squared Error to compare the Q-value predicion and target so it can update the Q-network's weights.  
+
 
 # Munchausen agent
 
-Basically, it's a DQN agent where the exploratory part is more important and rewarded. 
+The Munchausen Reinforcement Learning (M-DQN) is a modification of the Deep Q-Learning (DQN) algorithm that incorporates a special term. This modification is a simple yet powerful extension of existing agents, and it is theoretically grounded, performing implicit KL regularization and enjoying a very strong performance bound. The M-DQN agent has been shown to outperform the traditional DQN agent in various settings, including Atari games, and it has been compared to other state-of-the-art agents such as C51 and Rainbow, demonstrating superior performance. The M-DQN agent achieves this by increasing the action gap and leveraging the Munchausen term, which leads to significant improvements in learning efficiency and overall performance. The M-DQN agent is theoretically sound and does not rely on common deep reinforcement learning tricks, making it a promising advancement in the field of reinforcement learning.
+
+#### Munchausen term
+
+$$L(\theta) = \mathbb{E}_{s, a \sim D} \left[ (r(s, a) + \alpha \cdot \text{sign}(\rho) \cdot \log \pi(a|s, \theta)) \cdot Q(s, a, \theta) \right]$$
+
+Without entering into too much details, this term encourages actions with higher uncertainty, it encourages exploration. And this is the whole purpose of the Munchausen Agent, encourage and reward exploration instead of only working with exploitation. 
+
+The M-DQN modification is achieved by adding a scaled log-policy to the DQN's target. This addition introduces a novel term to the DQN's target, similar to maximum-entropy reinforcement learning, and is designed to improve the agent's learning efficiency and overall performance. The M-DQN agent's theoretical aspects include implicit KL regularization, which performs KL regularization without error in the greedy step, and an increase in the action gap, which generalizes advantage learning. These theoretical aspects contribute to the M-DQN agent's superior performance compared to traditional DQN and other state-of-the-art agents.
+
+#### KL regularization
+
+KL regularization, short for Kullback-Leibler regularization, is a technique used in reinforcement learning to penalize a new policy from being too far from the previous one, as measured by the KL divergence. It is a form of regularization that encourages the new policy to stay close to the previous policy, thus preventing drastic changes in the policy distribution. This can be particularly useful in reinforcement learning to ensure stability and prevent large policy changes that may lead to suboptimal behavior. KL regularization has been shown to be helpful in improving the performance and stability of reinforcement learning algorithms, and it is often used in combination with other techniques to achieve better training results.
+
 
 ## Resources
 
@@ -59,13 +106,9 @@ Basically, it's a DQN agent where the exploratory part is more important and rew
 - [DQN agent to play SnakeGame (YouTube video)](https://www.youtube.com/watch?v=L8ypSXwyBds)
 - [Deep Q Learning is simple with PyTorch (YouTube video)](https://www.youtube.com/watch?v=wc-FxNENg9U)
 - [Wikipedia - Q-learning](https://en.wikipedia.org/wiki/Q-learning)
-
-## Conclusion
-
-Conclusion
-
-## Acknowledgments
-
+- [Munchausen RL](https://arxiv.org/abs/2007.14430)
+- [Munchausen RL](https://simons.berkeley.edu/sites/default/files/docs/16336/matthieugeistrl20-1slides.pdf)
+- [Munchausen RL](https://vitalab.github.io/article/2020/09/10/Munchausen_Reinforcement_Learning.html)
 
 ---
 
@@ -73,4 +116,4 @@ Conclusion
 Basile Pochet
 
 **Class:**
-<Master 2 Data Science for Social Sciences>
+Master 2 Data Science for Social Sciences
