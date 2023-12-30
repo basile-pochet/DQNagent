@@ -14,13 +14,22 @@ Unfortunately I did not have time to implement a Munchausen Agent to compare its
 
 The structure of the repository is the following: 
 
+  - [GIFs](GIFs) and [Plots](Plots) where I stored the GIFs and Plots (makes sense)
+  - [Agent](AGENT.py) is the most important file. In it you will be able to see how I created the DQN agent, along with the docstrings in google format for each function and with comments for each ambiguous or complex code section.
+
 ## Results
 
 I tried my DQN Agent in the following games: CartPole, Acrobot and Moutain Car.
 
+#### CartPole
+
 ![CartPole](GIFs/cart_pole.gif)
 
+#### Acrobot
+
 ![Acrobot](GIFs/acrobot.gif)
+
+#### Mountain car
 
 ![MountainCar](GIFs/mountain_car.gif)
 
