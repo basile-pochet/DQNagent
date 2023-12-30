@@ -16,12 +16,25 @@ The structure of the repository is the following:
 
 ## Results
 
-
-The CartPole game is the game bellow. 
+I tried my DQN Agent in the following games: CartPole, Acrobot and Moutain Car.
 
 ![CartPole](GIFs/cart_pole.gif)
 
+![Acrobot](GIFs/acrobot.gif)
+
+![MountainCar](GIFs/mountain_car.gif)
+
 *Source: Gymnasium Website*
+
+The best results I obtain were on the CartPole game. It might be because when I implemented the agent I was thinking too much about the game I wanted it to perform on. 
+
+The following plot show the main results but you can find more results in the [Plots](Plots) folder where they are named chronologically (first is [1-First try of the dqn agent](Plots/1-First try of the dqn agent.png) and last one is [11-mountain car](Plots/11- mountain car.png)).
+
+The final results for the three games are: 
+
+![Cartpole](Plots/8- final CartPole.png)
+
+
 
 IMPORTANT SOURCES / HELPS : 
 
