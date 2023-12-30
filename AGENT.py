@@ -212,8 +212,8 @@ def train_dqn(agent, env, episodes=1000, batch_size=10000, env_name="Unknown"):
 
 if __name__ == "__main__":
     env = gym.make('CartPole-v1')
-    state_size = env.observation_space.shape[0]
-    action_size = env.action_space.n
+    state_size = env.observation_space.shape[0] 
+    action_size = env.action_space.n #change this to env.observation_space.shape[0] depending on the game, I could not find an other way to do it
 
     dqn_agent = DQNAgent(state_size, action_size, hidden_size=256 * 2)
     train_dqn(dqn_agent, env, env_name='CartPole-v1')
